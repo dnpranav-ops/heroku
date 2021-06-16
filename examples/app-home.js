@@ -24,10 +24,11 @@ app.event('app_home_opened', async ({ event, client, context }) => {
         /* body of the view */
         blocks: [
           {
-            "type": "section",
+            "type": "header",
             "text": {
-              "type": "mrkdwn",
-              "text": "*Welcome to your _App's Home_* :tada:"
+              "type": "plain_text",
+              "text": "Welcome to your App's Home 🎉",
+              "emoji": true
             }
           },
           {
