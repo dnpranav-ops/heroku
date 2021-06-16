@@ -7,9 +7,7 @@ const app = new App({
 });
 
 
-
-// All the room in the world for your code
-
+// Space for your code
 
 
 (async () => {

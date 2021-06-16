@@ -1,5 +1,3 @@
-// This example shows how to listen to a button click
-// It uses slash commands and actions
 // Require the Bolt package (github.com/slackapi/bolt)
 const { App } = require("@slack/bolt");
 
@@ -11,6 +9,7 @@ const app = new App({
 // Message listener function called for messages containing "hello"
 app.message('hello', async ({ message, say }) => {
   await say({
+    "text": `👋 Hey there <@${message.user}>`,
 	  "blocks": [
 		  {
 			  "type": "section",
@@ -47,10 +46,3 @@ app.action('click_me_button', async ({ ack, body, client, say }) => {
     text: `<@${userID}> clicked the button! 🎉`
   });
 });
-
-(async () => {
-  // Start your app
-  await app.start(process.env.PORT || 3000);
-
-  console.log('⚡️ Bolt app is running!');
-})();

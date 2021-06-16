@@ -9,7 +9,7 @@ const app = new App({
 });
 
 // Listen for a slash command invocation
-app.command('/helloworld', async ({ ack, payload, context }) => {
+app.shortcut('helloworld', async ({ ack, payload, context }) => {
   // Acknowledge the command request
   ack();
 
