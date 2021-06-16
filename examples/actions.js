@@ -46,3 +46,10 @@ app.action('click_me_button', async ({ ack, body, client, say }) => {
     text: `<@${userID}> clicked the button! 🎉`
   });
 });
+
+(async () => {
+  // Start your app
+  await app.start(process.env.PORT || 3000);
+
+  console.log('⚡️ Bolt app is running!');
+})();

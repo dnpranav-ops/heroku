@@ -1,3 +1,5 @@
+// This example shows basic use of home tabs
+// It uses an enabled app home and the app_home_opened event
 // Require the Bolt package (github.com/slackapi/bolt)
 const { App } = require("@slack/bolt");
 
@@ -6,8 +8,6 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-
-// Space for your code
 app.event('app_home_opened', async ({ event, client, context }) => {
   try {
     /* view.publish is the method that your app uses to push a view to the Home tab */
