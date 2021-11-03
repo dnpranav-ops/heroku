@@ -8,7 +8,9 @@ const app = new App({
 
 
 // Space for your code
-
+app.message('hello', async ({ message, say }) => {
+    await say(`Hey there <@${message.user}>`);
+});
 
 (async () => {
   // Start your app
