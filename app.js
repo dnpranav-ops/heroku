@@ -30,6 +30,7 @@ app.message('hello', async ({ message, say }) => {
         ]
     });
 });
+
 // Action listener function called when an interactive component with action_id of “click_me_button” is triggered
 app.action('click_me_button', async ({ ack, body, client, say }) => {
     // Acknowledge action request before anything else
