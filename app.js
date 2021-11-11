@@ -11,7 +11,7 @@ const app = new App({
 });
 
 // Listens to incoming messages that contain "hello"
-app.message('hello', async ({ message, say }) => {
+app.message('case escalate', async ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   await say({
     blocks: [ 
