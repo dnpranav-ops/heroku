@@ -8,8 +8,6 @@ const app = new App({
   // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
   // you still need to listen on some port!
   //port: process.env.PORT || 3000
-  host: 'localhost', 
-  port: 8000 
 });
 
 // Listens to incoming messages that contain "hello"
