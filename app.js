@@ -7,7 +7,7 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
   // you still need to listen on some port!
-  port: process.env.PORT || 8000
+  //port: process.env.PORT || 3000
 });
 
 // Listens to incoming messages that contain "hello"
