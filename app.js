@@ -70,7 +70,8 @@ app.action('button_click', async ({ body, ack, say }) => {
 
 (async () => {
   // Start your app
-  const port = process.env.PORT || 3000 ;
+  //const port = process.env.PORT || 3000 ;
+  const port = 3000 ;
   await app.start(port);
 
   console.log('⚡️ Bolt app is running!');
