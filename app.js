@@ -7,12 +7,12 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
   // you still need to listen on some port!
-  //port: process.env.PORT || 3000
+  port: process.env.PORT || 3000
 });
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Our app is running on port ${ PORT }`);
-});
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Our app is running on port ${ PORT }`);
+// });
 // Listens to incoming messages that contain "hello"
 app.message('case escalate', async ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
