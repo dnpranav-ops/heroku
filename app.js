@@ -7,7 +7,7 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
   // you still need to listen on some port!
-  port: process.env.PORT || 3000
+  //port: process.env.PORT || 3000
 });
 // const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {
@@ -70,7 +70,7 @@ app.action('button_click', async ({ body, ack, say }) => {
 
 (async () => {
   // Start your app
-  await app.start();
+  await app.start(process.env.PORT || 3000);
 
   console.log('⚡️ Bolt app is running!');
 })();
