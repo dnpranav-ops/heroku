@@ -9,9 +9,7 @@
   "dependencies": {
     "@slack/bolt": "^3.4.0"
   },
-  "engines": {
-    "node": "14.x"
-  },
+
   "repository": {
     "url": "https://glitch.com/edit/#!/bolt-js-slack-app"
   },
