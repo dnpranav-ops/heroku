@@ -9,7 +9,10 @@ const app = new App({
   // you still need to listen on some port!
   //port: process.env.PORT || 3000
 });
-app.listen(process.env.PORT || 5000)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 // Listens to incoming messages that contain "hello"
 app.message('case escalate', async ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
