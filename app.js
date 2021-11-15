@@ -7,22 +7,51 @@ const app = new App({
   appToken: process.env.SLACK_APP_TOKEN,
   // Socket Mode doesn't listen on a port, but in case you want your app to respond to OAuth,
   // you still need to listen on some port!
-  //port: process.env.PORT || 3000
+  port: process.env.PORT || 3000
 });
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//     console.log(`Our app is running on port ${ PORT }`);
-// });
+
 // Listens to incoming messages that contain "hello"
-app.message('case escalate', async ({ message, say }) => {
+app.message('hello', async ({ message, say }) => {
   // say() sends a message to the channel where the event was triggered
   await say({
-    blocks: [ 
-          {
+	 text: 'Hey there <@${message.user}>!'
+	});
+});
+
+
+app.shortcut('escalation_action', async ({ ack, payload, client }) => {
+  // Acknowledge shortcut request
+  ack();
+
+  try {
+    // Call the views.open method using the WebClient passed to listeners
+    const result = await client.views.open({
+      trigger_id: payload.trigger_id,
+	view: {
+"type": "modal",
+	"callback_id": "casecommment_action",
+	"title": {
+		"type": "plain_text",
+		"text": "My App",
+		"emoji": true
+	},
+	"submit": {
+		"type": "plain_text",
+		"text": "Submit",
+		"emoji": true
+	},
+	"close": {
+		"type": "plain_text",
+		"text": "Cancel",
+		"emoji": true
+	},
+	"blocks": [
+		{
 			"type": "input",
+			"block_id":"cn",
 			"element": {
 				"type": "plain_text_input",
-				"action_id": "plain_text_input-action"
+				"action_id": "case_number"
 			},
 			"label": {
 				"type": "plain_text",
@@ -32,48 +61,36 @@ app.message('case escalate', async ({ message, say }) => {
 		},
 		{
 			"type": "input",
+			"block_id":"comm",
 			"element": {
 				"type": "plain_text_input",
-				"action_id": "plain_text_input-action"
+				"action_id": "comment"
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Case Comments",
+				"text": "Comment",
 				"emoji": true
 			}
-		},
-		{
-			"type": "actions",
-			"elements": [
-				{
-					"type": "button",
-					"text": {
-						"type": "plain_text",
-						"text": "Escalate Case",
-						"emoji": true
-					},
-					"value": "click_me_123",
-					"action_id": "actionId-0"
-				}
-			]
 		}
-        ],
-    text: `Hey there <@${message.user}>!`
-  });
+	]
+}
+});
+ console.log(result);
+  }
+  catch (error) {
+    console.error(error);
+  }
 });
 
-app.action('button_click', async ({ body, ack, say }) => {
-  // Acknowledge the action
-  await ack();
-  await say(`<@${body.user.id}> clicked the button`);
+
+app.view('casecommment_action',async ({ ack, body, view, client }) => { 
+   await ack();
+   console.log('<@${body.user.id}> You entered the case number as the ${view.state.values.cn.case_number.value} and case comment as ${view.state.values.comm.comment.value}');
 });
 
 (async () => {
   // Start your app
-  const port = process.env.PORT || 3000 ;
-  //const port = 3000 ;
-  await app.start(port);
+  await app.start();
 
   console.log('⚡️ Bolt app is running!');
-  console.log(port);
 })();
